@@ -1,0 +1,94 @@
+Classfile /home/promise/Work/code/JAVA-000/Week_01/demo/jvm0105/LocalVariableTest.class
+  Last modified Oct 19, 2020; size 425 bytes
+  MD5 checksum dc2d7bd195a7e9fd37ba0e5821e17d0b
+  Compiled from "LocalVariableTest.java"
+public class jvm0105.LocalVariableTest
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #7.#16         // java/lang/Object."<init>":()V
+   #2 = Class              #17            // jvm0105/MovingAverage
+   #3 = Methodref          #2.#16         // jvm0105/MovingAverage."<init>":()V
+   #4 = Methodref          #2.#18         // jvm0105/MovingAverage.submit:(D)V
+   #5 = Methodref          #2.#19         // jvm0105/MovingAverage.getAvg:()D
+   #6 = Class              #20            // jvm0105/LocalVariableTest
+   #7 = Class              #21            // java/lang/Object
+   #8 = Utf8               <init>
+   #9 = Utf8               ()V
+  #10 = Utf8               Code
+  #11 = Utf8               LineNumberTable
+  #12 = Utf8               main
+  #13 = Utf8               ([Ljava/lang/String;)V
+  #14 = Utf8               SourceFile
+  #15 = Utf8               LocalVariableTest.java
+  #16 = NameAndType        #8:#9          // "<init>":()V
+  #17 = Utf8               jvm0105/MovingAverage
+  #18 = NameAndType        #22:#23        // submit:(D)V
+  #19 = NameAndType        #24:#25        // getAvg:()D
+  #20 = Utf8               jvm0105/LocalVariableTest
+  #21 = Utf8               java/lang/Object
+  #22 = Utf8               submit
+  #23 = Utf8               (D)V
+  #24 = Utf8               getAvg
+  #25 = Utf8               ()D
+{
+  public jvm0105.LocalVariableTest();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 3: 0
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=6, args_size=1
+      // 0,3,4 - 生成 MovingAverage 对象 并且调用构造函数初始化 同时 将对象引用 存储 store 到本地变量表
+         0: new           #2                  // class jvm0105/MovingAverage
+         3: dup
+         4: invokespecial #3                  // Method jvm0105/MovingAverage."<init>":()V
+         7: astore_1
+      // 将常量 1 压栈
+         8: iconst_1
+      // 将 刚刚的常量 存入 本地变量表
+         9: istore_2
+      // 将 常量 6 压栈
+        10: bipush        6
+      // 将刚刚 常常 6 存入本地变量标 3 号槽位
+        12: istore_3
+      // 从本地局部变量表 槽位 1 装在引用类型
+        13: aload_1
+      // 从本地变量表槽位 2 装在 int 类型值
+        14: iload_2
+      // 将 此数值 类型转换
+        15: i2d
+      // 调用 submit 函数
+        16: invokevirtual #4                  // Method jvm0105/MovingAverage.submit:(D)V
+      // 19-20-21-22 同上
+        19: aload_1
+        20: iload_3
+        21: i2d
+        22: invokevirtual #4                  // Method jvm0105/MovingAverage.submit:(D)V
+      //从本地局部变量表 槽位 1 装在引用类型
+        25: aload_1
+      // 调用 getAvg
+        26: invokevirtual #5                  // Method jvm0105/MovingAverage.getAvg:()D
+      // 操作数 栈与 本地 变量表 dstore_x [0,3] 超过 3 则 就 是 dstore x
+        29: dstore        4
+        31: return
+      LineNumberTable:
+        line 5: 0
+        line 6: 8
+        line 7: 10
+        line 8: 13
+        line 9: 19
+        line 10: 25
+        line 11: 31
+}
+SourceFile: "LocalVariableTest.java"

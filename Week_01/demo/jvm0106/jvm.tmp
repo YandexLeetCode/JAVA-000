@@ -1,0 +1,148 @@
+Classfile /home/promise/Work/code/JAVA-000/Week_01/demo/jvm0106/ForLoopTest.class
+  Last modified Oct 16, 2020; size 804 bytes
+  MD5 checksum b3748861bc70ce06dd6fda4cf6ad2cf7
+  Compiled from "ForLoopTest.java"
+public class demo.jvm0106.ForLoopTest
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #8.#35         // java/lang/Object."<init>":()V
+   #2 = Class              #36            // demo/jvm0106/MovingAverage
+   #3 = Methodref          #2.#35         // demo/jvm0106/MovingAverage."<init>":()V
+   #4 = Fieldref           #7.#37         // demo/jvm0106/ForLoopTest.numbers:[I
+   #5 = Methodref          #2.#38         // demo/jvm0106/MovingAverage.submit:(D)V
+   #6 = Methodref          #2.#39         // demo/jvm0106/MovingAverage.getAvg:()D
+   #7 = Class              #40            // demo/jvm0106/ForLoopTest
+   #8 = Class              #41            // java/lang/Object
+   #9 = Utf8               numbers
+  #10 = Utf8               [I
+  #11 = Utf8               <init>
+  #12 = Utf8               ()V
+  #13 = Utf8               Code
+  #14 = Utf8               LineNumberTable
+  #15 = Utf8               LocalVariableTable
+  #16 = Utf8               this
+  #17 = Utf8               Ldemo/jvm0106/ForLoopTest;
+  #18 = Utf8               main
+  #19 = Utf8               ([Ljava/lang/String;)V
+  #20 = Utf8               number
+  #21 = Utf8               I
+  #22 = Utf8               args
+  #23 = Utf8               [Ljava/lang/String;
+  #24 = Utf8               ma
+  #25 = Utf8               Ldemo/jvm0106/MovingAverage;
+  #26 = Utf8               avg
+  #27 = Utf8               D
+  #28 = Utf8               StackMapTable
+  #29 = Class              #23            // "[Ljava/lang/String;"
+  #30 = Class              #36            // demo/jvm0106/MovingAverage
+  #31 = Class              #10            // "[I"
+  #32 = Utf8               <clinit>
+  #33 = Utf8               SourceFile
+  #34 = Utf8               ForLoopTest.java
+  #35 = NameAndType        #11:#12        // "<init>":()V
+  #36 = Utf8               demo/jvm0106/MovingAverage
+  #37 = NameAndType        #9:#10         // numbers:[I
+  #38 = NameAndType        #42:#43        // submit:(D)V
+  #39 = NameAndType        #44:#45        // getAvg:()D
+  #40 = Utf8               demo/jvm0106/ForLoopTest
+  #41 = Utf8               java/lang/Object
+  #42 = Utf8               submit
+  #43 = Utf8               (D)V
+  #44 = Utf8               getAvg
+  #45 = Utf8               ()D
+{
+  public demo.jvm0106.ForLoopTest();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 3: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Ldemo/jvm0106/ForLoopTest;
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=6, args_size=1
+         0: new           #2                  // class demo/jvm0106/MovingAverage
+         3: dup
+         4: invokespecial #3                  // Method demo/jvm0106/MovingAverage."<init>":()V
+         7: astore_1
+         8: getstatic     #4                  // Field numbers:[I
+        11: astore_2
+        12: aload_2
+        13: arraylength
+        14: istore_3
+        15: iconst_0
+        16: istore        4
+        18: iload         4
+        20: iload_3
+        21: if_icmpge     43
+        24: aload_2
+        25: iload         4
+        27: iaload
+        28: istore        5
+        30: aload_1
+        31: iload         5
+        33: i2d
+        34: invokevirtual #5                  // Method demo/jvm0106/MovingAverage.submit:(D)V
+        37: iinc          4, 1
+        40: goto          18
+        43: aload_1
+        44: invokevirtual #6                  // Method demo/jvm0106/MovingAverage.getAvg:()D
+        47: dstore_2
+        48: return
+      LineNumberTable:
+        line 6: 0
+        line 7: 8
+        line 8: 30
+        line 7: 37
+        line 10: 43
+        line 11: 48
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           30       7     5 number   I
+            0      49     0  args   [Ljava/lang/String;
+            8      41     1    ma   Ldemo/jvm0106/MovingAverage;
+           48       1     2   avg   D
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 18
+          locals = [ class "[Ljava/lang/String;", class demo/jvm0106/MovingAverage, class "[I", int, int ]
+          stack = []
+        frame_type = 248 /* chop */
+          offset_delta = 24
+
+  static {};
+    descriptor: ()V
+    flags: ACC_STATIC
+    Code:
+      stack=4, locals=0, args_size=0
+         0: iconst_3
+         1: newarray       int
+         3: dup
+         4: iconst_0
+         5: iconst_1
+         6: iastore
+         7: dup
+         8: iconst_1
+         9: bipush        6
+        11: iastore
+        12: dup
+        13: iconst_2
+        14: bipush        8
+        16: iastore
+        17: putstatic     #4                  // Field numbers:[I
+        20: return
+      LineNumberTable:
+        line 4: 0
+}
+SourceFile: "ForLoopTest.java"
