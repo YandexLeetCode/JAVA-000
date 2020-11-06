@@ -16,10 +16,12 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutionException;
 
 
@@ -31,7 +33,7 @@ import java.util.concurrent.ExecutionException;
 public class NettyHttpClientPool {
 
     /** volatile 保证 线程之间 可见 单例模式*/
-    volatile private static NettyHttpClientPool nettyHttpClientPool;
+    private static NettyHttpClientPool nettyHttpClientPool;
 
     /** Key 是连接 后台服务的 地址 */
     public ChannelPoolMap<URI, FixedChannelPool> httpClientPoolMap;
@@ -40,18 +42,13 @@ public class NettyHttpClientPool {
     final Bootstrap bootstrap = new Bootstrap();
 
     /** 此处 因为后台服务只有一个,所以 这里面  就定死 只有一个后台请求地址, 反正 这里面是 map 后面有不同请求地址,就直接循环 增加到对应map中即可*/
-    private static List<String> urls = Arrays.asList("http://localhost:8808/test");
+    private static final List<String> urls = Arrays.asList("http://localhost:8808/test");
 
     /** 请求地址与连接池 对应的 map */
-    volatile private static Map<URI, FixedChannelPool> pools = new ConcurrentHashMap<>(2);
+    private static final Map<URI, FixedChannelPool> pools = new ConcurrentHashMap<>(2);
 
     /** 存放 请求列表的 数组 */
-    volatile private static List<URI> uriList;
-
-    /** 构造函数 首先初始化 连接池 */
-    private NettyHttpClientPool() {
-        build();
-    }
+    private static final CopyOnWriteArrayList<URI> uriList = new CopyOnWriteArrayList<>();
 
     /**
      *   获取连接池的实例
@@ -62,9 +59,11 @@ public class NettyHttpClientPool {
             synchronized (NettyHttpClientPool.class) {
                 if (nettyHttpClientPool == null) {
                     nettyHttpClientPool = new NettyHttpClientPool();
+                    nettyHttpClientPool.build();
                 }
             }
         }
+        return nettyHttpClientPool;
     }
     /**
      *  初始化 连接池

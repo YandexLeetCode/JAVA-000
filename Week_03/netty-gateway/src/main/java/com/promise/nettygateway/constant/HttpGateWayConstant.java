@@ -9,4 +9,6 @@ public class HttpGateWayConstant {
 
     public final static int MAX_CONNECTIONS = Integer.MAX_VALUE;
     public final static String RANDOM_KEY = "gatewayId";
+
+    public final static int CORE_CONNECTION = 6;
 }

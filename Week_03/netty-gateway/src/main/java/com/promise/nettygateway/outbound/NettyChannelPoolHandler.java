@@ -19,8 +19,13 @@ public class NettyChannelPoolHandler implements ChannelPoolHandler {
 
     @Override
     public void channelReleased(Channel channel) throws Exception {
-        channel.writeAndFlush(Unpooled.EMPTY_BUFFER);
-        log.info("|| ==> 回收Channel. ID: {}", channel.id());
+        if (channel.isActive()) {
+            channel.writeAndFlush(Unpooled.EMPTY_BUFFER);
+            log.info("|| ==> 回收Channel. ID: {}", channel.id());
+        } else {
+            log.warn("|| ==> channel 已关闭 ID: {}", channel.id());
+        }
+
     }
 
     @Override
@@ -37,6 +42,6 @@ public class NettyChannelPoolHandler implements ChannelPoolHandler {
         socketChannel.pipeline().addLast(new HttpResponseDecoder())
                 .addLast(new HttpRequestEncoder())
                 .addLast(new IdleStateHandler(0, 0, 10, TimeUnit.SECONDS))
-                .addLast(new NettyHttpClientOutboundHandler())
+                .addLast(new NettyClientHandler());
     }
 }
