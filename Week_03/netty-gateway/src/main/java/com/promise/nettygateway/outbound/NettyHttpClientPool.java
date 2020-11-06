@@ -54,6 +54,19 @@ public class NettyHttpClientPool {
     }
 
     /**
+     *   获取连接池的实例
+     * @return
+     */
+    public static NettyHttpClientPool getInstance() {
+        if (nettyHttpClientPool == null) {
+            synchronized (NettyHttpClientPool.class) {
+                if (nettyHttpClientPool == null) {
+                    nettyHttpClientPool = new NettyHttpClientPool();
+                }
+            }
+        }
+    }
+    /**
      *  初始化 连接池
      */
     public void build() {
