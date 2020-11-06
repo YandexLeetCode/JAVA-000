@@ -6,4 +6,7 @@ package com.promise.nettygateway.constant;
 public class HttpGateWayConstant {
     public final static String GATEWAY_NAME = "Netty-GateWay";
     public final static String GATEWAY_VERSION = "0.0.1";
+
+    public final static int MAX_CONNECTIONS = Integer.MAX_VALUE;
+    public final static String RANDOM_KEY = "gatewayId";
 }
