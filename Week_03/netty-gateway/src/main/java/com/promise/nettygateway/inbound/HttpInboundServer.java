@@ -14,6 +14,8 @@ import io.netty.handler.logging.LoggingHandler;
 import io.netty.util.concurrent.Future;
 import lombok.extern.slf4j.Slf4j;
 
+import java.nio.ByteBuffer;
+
 /**
  * Created by yandex on 2020/11/1.
  */
@@ -30,12 +32,14 @@ public class HttpInboundServer {
 
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
-            bootstrap.option(ChannelOption.SO_BACKLOG, 128)
-                    .option(ChannelOption.SO_REUSEADDR, true)
-                    .option(ChannelOption.SO_RCVBUF, 32 * 1024)
-                    .option(EpollChannelOption.SO_REUSEADDR, true)
+            bootstrap.option(ChannelOption.SO_BACKLOG, 128) // 建立连接前的握手连接数 Mac/Linux 默认128  win 200
+                    .option(ChannelOption.TCP_NODELAY, true) // 高并发下 建议 打开 Nagle 算法优化，将内存拼接在一起
+                    .option(ChannelOption.SO_REUSEADDR, true) // 地址复用
+                    .option(ChannelOption.SO_RCVBUF, 32 * 1024) //
+                    .option(ChannelOption.SO_SNDBUF, 32 * 1024)
+                    .option(EpollChannelOption.SO_REUSEPORT, true)
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
-                    .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
+                    .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT); // 让netty 分配 byteBuf 进行管理
 
             /**
              * 绑定 注册事件
