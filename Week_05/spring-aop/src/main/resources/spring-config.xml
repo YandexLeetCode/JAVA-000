@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!--    使用构造注入方式装配 main.java.com.geekbang.springaop.pojo.User 实例, 此种构造 对构造函数的参数顺序有很大要求-->
+    <bean id="user" class="com.geekbang.springaop.pojo.User">
+        <constructor-arg  value="无尘" />
+        <constructor-arg  value="20" />
+        <constructor-arg index="2">
+            <list>
+                <value>"Hello World"</value>
+                <value>"Hello HangZhou"</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+<!--    基于设值 进行构造-->
+    <bean id="userByValue" class="com.geekbang.springaop.pojo.User">
+        <property name="name" value="无心" />
+        <property name="age" value="10" />
+        <property name="list">
+            <list>
+                <value>"Hello GeekBang"</value>
+                <value>"Hello xxxxxx"</value>
+            </list>
+        </property>
+    </bean>
+</beans>

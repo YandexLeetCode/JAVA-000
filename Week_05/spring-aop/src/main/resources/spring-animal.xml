@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--    基于设值 进行构造-->
+    <bean id="mm-cat"
+          class="com.geekbang.springaop.customxml.Cat">
+       <property name="name" value="喵喵"/>
+        <property name="age" value="2"/>
+    </bean>
+    <bean id="xm-cat"
+          class="com.geekbang.springaop.customxml.Cat">
+        <property name="name" value="嘎嘎"/>
+        <property name="age" value="1"/>
+    </bean>
+
+<!--    使用 变量赋值 在类定义中要有对应的 set get 方法-->
+    <bean id="klass" class="com.geekbang.springaop.customxml.Klass">
+        <property name="cats">
+            <list>
+                <ref bean="mm-cat"/>
+                <ref bean="xm-cat"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="person" class="com.geekbang.springaop.customxml.Person">
+    </bean>
+</beans>

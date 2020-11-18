@@ -1,4 +1,4 @@
-package HelloClassLoader;
+package demo.HelloClassLoader;
 
 import java.io.File;
 import java.io.FileInputStream;
